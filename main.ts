@@ -1,15 +1,15 @@
-import { Construct } from 'constructs';
-import { App, Chart, ChartProps } from 'cdk8s';
+import "reflect-metadata";
 
-export class MyChart extends Chart {
-  constructor(scope: Construct, id: string, props: ChartProps = { }) {
-    super(scope, id, props);
+import { Synthesizer } from './synthesizer';
+import SomeApp from "./SomeApp";
 
-    // define resources here
+const synth = new Synthesizer();
+synth.registerApp(SomeApp);
 
-  }
+const cluster = {
+  name: 'test',
+  env: 'dev'
 }
 
-const app = new App();
-new MyChart(app, 'test_cdk8s');
-app.synth();
+synth.synth(cluster);
+

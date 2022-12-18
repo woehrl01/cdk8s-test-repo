@@ -10,6 +10,7 @@
     "synth": "cdk8s synth",
     "compile": "tsc --build",
     "watch": "tsc --build -w",
+    "exec": "ts-node --files main.ts",
     "test": "jest",
     "build": "npm run compile && npm run test && npm run synth",
     "upgrade": "npm i cdk8s@latest cdk8s-cli@latest",
@@ -19,6 +20,7 @@
     "cdk8s": "^2.5.78",
     "cdk8s-plus-25": "^2.2.3",
     "constructs": "^10.1.193",
+    "reflect-metadata": "^0.1.13",
     "tsyringe": "^4.7.0"
   },
   "devDependencies": {
