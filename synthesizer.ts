@@ -5,6 +5,8 @@ import { ChartApplication, Cluster, Registerer } from "./charts/Application";
 
 export class Synthesizer {
 
+  private scopes = ["app"]
+
   registerApp(registerer: Registerer) {
     this.register(registerer, "app")
   }
@@ -17,12 +19,12 @@ export class Synthesizer {
     registerer(register);
   }
 
-  synth(cluster: Cluster, chartName: string) {
+  public synth(cluster: Cluster, chartName: string) {
     const app = new App();
 
     let foundChart = false;
 
-    for (var scope of ["app"]) {
+    for (var scope of this.scopes) {
       foundChart ||= this.addChartsFor(app, cluster, scope, chartName);
     }
 
@@ -51,5 +53,4 @@ export class Synthesizer {
 
     return foundChart;
   }
-
 }
