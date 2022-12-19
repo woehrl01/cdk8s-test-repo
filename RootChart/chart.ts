@@ -3,6 +3,7 @@ import { Chart } from 'cdk8s';
 import { injectable, injectAll } from 'tsyringe';
 import { BaseChartApplication, ChartApplication, Cluster } from '../charts/Application';
 import { ArgoCDcdk8sApplication as ArgoCDApplication } from '../charts/ArgoCDApplication';
+import { Application } from '../imports/application-argoproj.io';
 
 @injectable()
 export class RootApp extends BaseChartApplication {
@@ -33,13 +34,46 @@ class ArgoCDAppChart extends Chart {
     constructor(scope: Construct, app: ChartApplication, cluster: Cluster) {
         super(scope, "app-" + app.name);
 
-        new ArgoCDApplication(this, "app", {
-            name: app.name,
-            namespace: app.name,
-            clustername: cluster.name,
-            projectname: app.name,
-            repositoryurl: "https://github.com/woehrl01/cdk8s-test-repo",
-            targetRevision: app.refSelection(cluster)
+        new Application(this, app.name, {
+            metadata: {
+                name: app.name
+            },
+            spec: {
+                destination: {
+                    name: cluster.name,
+                    namespace: app.name
+                },
+                project: app.name,
+                source: {
+                    repoUrl: "https://github.com/woehrl01/cdk8s-test-repo",
+                    targetRevision: app.refSelection(cluster),
+                    plugin: {
+                        name: "cdk8s",
+                        env: [
+                            {
+                                name: "CLUSTER_NAME",
+                                value: cluster.name,
+                            },
+                            {
+                                name: "CLUSTER_ENVIRONMENT",
+                                value: cluster.env,
+                            },
+                            {
+                                name: "CHART",
+                                value: app.name
+                            }
+                        ]
+                    }
+                },
+                syncPolicy: {
+                    automated: {
+                        prune: true
+                    },
+                    syncOptions: [
+                        "CreateNamespace=true"
+                    ]
+                }
+            },
         });
     }
 }
