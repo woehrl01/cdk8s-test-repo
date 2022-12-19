@@ -2,12 +2,18 @@ import { Construct } from 'constructs';
 import { Chart } from 'cdk8s';
 import { IntOrString, KubeService } from '../imports/k8s';
 import { injectable } from 'tsyringe';
-import { Application, Cluster } from '../charts/Application';
+import { ChartApplication, Cluster } from '../charts/Application';
 
 @injectable()
-export class ChartApp implements Application {
+export class ChartApp implements ChartApplication {
+    name: string = 'ChartApp';
+
+    public isInstallInCluster(_cluster: Cluster) {
+        return true;
+    }
+
     public add(app: Construct, _cluster: Cluster) {
-        new MyChart(app, 'test_cdk8s');
+        new MyChart(app, this.name);
     }
 }
 

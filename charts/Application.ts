@@ -6,7 +6,9 @@ export interface Cluster {
     env: string;
 }
 
-export interface Application {
+export interface ChartApplication {
+    readonly name: string;
+    isInstallInCluster(cluster: Cluster): boolean;
     add(app: Construct, cluster: Cluster): void;
 }
 

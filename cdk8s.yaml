@@ -2,3 +2,4 @@ language: typescript
 app: node main.js
 imports:
   - k8s
+  - application:=https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml
