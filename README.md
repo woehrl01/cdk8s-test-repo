@@ -18,3 +18,6 @@ Uses https://bun.sh/ for much more significant performance boost
 
 ### How does this work?
 By registering additional modules, a root application is dynamically populated. The root application generates ArgoCD Applications for each app in the dedicated cluster. The cluster scope is passed into the modules, which allows you to fine tune the configuration of the app based of the cluster. It even allows you to finetune the branch if desired.
+
+### Warning
+Tests are not updated (yet) and thus fail.
