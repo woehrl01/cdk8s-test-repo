@@ -2,7 +2,7 @@ import { Construct } from "constructs";
 import { Application } from "../imports/application-argoproj.io";
 
 export class ArgoCDcdk8sApplication extends Construct {
-    constructor(scope: Construct, id: string, props: { name: string, clustername: string, namespace: string, projectname: string }) {
+    constructor(scope: Construct, id: string, props: { name: string, clustername: string, namespace: string, projectname: string, repositoryurl: string }) {
         super(scope, id);
         new Application(this, props.name, {
             metadata: {
@@ -15,7 +15,7 @@ export class ArgoCDcdk8sApplication extends Construct {
                 },
                 project: props.projectname,
                 source: {
-                    repoUrl: "someUrl",
+                    repoUrl: props.repositoryurl,
                     targetRevision: "HEAD",
                     plugin: {
                         name: "cdk8s",

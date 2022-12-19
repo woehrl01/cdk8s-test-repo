@@ -40,7 +40,8 @@ class ArgoCDAppChart extends Chart {
             name: app.name,
             namespace: app.name,
             clustername: cluster.name,
-            projectname: app.name
+            projectname: app.name,
+            repositoryurl: "https://github.com/woehrl01/cdk8s-test-repo"
         });
     }
 }
