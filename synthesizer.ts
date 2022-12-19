@@ -1,21 +1,18 @@
 import { App } from "cdk8s";
-import { container } from "tsyringe";
+import { container, delay } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { ChartApplication, Cluster, Registerer } from "./charts/Application";
 
 export class Synthesizer {
 
-  registerRoot(registerer: Registerer) {
-    this.register(registerer, "root")
-  }
-
   registerApp(registerer: Registerer) {
     this.register(registerer, "app")
   }
 
-  private register(registerer: Registerer, name: string) {
+  private register(registerer: Registerer, scopeName: string) {
     const register = (c: constructor<unknown>) => {
-      container.register(name, { useClass: c });
+      // delay is needed to prevent a cyclic dependency error. see: https://github.com/microsoft/tsyringe#the-delay-helper-function
+      container.register(scopeName, { useClass: delay(() => c) });
     }
     registerer(register);
   }
@@ -24,11 +21,13 @@ export class Synthesizer {
     const app = new App();
 
     let foundChart = false;
-    foundChart ||= this.addChartsFor(app, cluster, "root", chartName);
-    foundChart ||= this.addChartsFor(app, cluster, "app", chartName);
+
+    for (var scope of ["app"]) {
+      foundChart ||= this.addChartsFor(app, cluster, scope, chartName);
+    }
 
     if (!foundChart) {
-      console.log(`Load all charts for scope ${chartName}`)
+      console.log(`Could not find any chart with the name ${chartName}`)
     }
 
     app.synth();

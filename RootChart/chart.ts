@@ -2,7 +2,7 @@ import { Construct } from 'constructs';
 import { Chart } from 'cdk8s';
 import { injectable, injectAll } from 'tsyringe';
 import { ChartApplication, Cluster } from '../charts/Application';
-import { ArgoCDcdk8sApplication } from '../charts/ArgoCDApplication';
+import { ArgoCDcdk8sApplication as ArgoCDApplication } from '../charts/ArgoCDApplication';
 
 @injectable()
 export class RootApp implements ChartApplication {
@@ -20,6 +20,11 @@ export class RootApp implements ChartApplication {
 
     public add(app: Construct, cluster: Cluster) {
         this.chartApps.forEach(chartApp => {
+            if (chartApp instanceof RootApp) {
+                //exclude ourselfs
+                return;
+            }
+
             if (chartApp.isInstallInCluster(cluster)) {
                 new ArgoCDAppChart(app, chartApp, cluster)
             }
@@ -31,7 +36,7 @@ class ArgoCDAppChart extends Chart {
     constructor(scope: Construct, app: ChartApplication, cluster: Cluster) {
         super(scope, "app-" + app.name);
 
-        new ArgoCDcdk8sApplication(this, "app", {
+        new ArgoCDApplication(this, "app", {
             name: app.name,
             namespace: app.name,
             clustername: cluster.name,

@@ -8,10 +8,9 @@ const chart = process.env.CHART || "";
 const clustername = process.env.CLUSTER_NAME || "";
 const clusterenvironment = process.env.CLUSTER_ENVIRONMENT || ""
 
-
 const synth = new Synthesizer();
 
-synth.registerRoot(RootChart)
+synth.registerApp(RootChart)
 synth.registerApp(SomeApp);
 
 const cluster = {
