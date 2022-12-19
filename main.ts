@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { Synthesizer } from './synthesizer';
-import SomeApp from "./SomeApp";
+import ProjectA from "./ProjectA";
 import RootChart from "./RootChart";
 
 const chart = process.env.CHART || "";
@@ -11,7 +11,7 @@ const clusterenvironment = process.env.CLUSTER_ENVIRONMENT || ""
 const synth = new Synthesizer();
 
 synth.registerApp(RootChart)
-synth.registerApp(SomeApp);
+synth.registerApp(ProjectA);
 
 const cluster = {
   name: clustername,
