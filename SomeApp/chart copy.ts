@@ -29,7 +29,7 @@ class MyChart extends Chart {
                     },
                 ],
                 selector: {
-                    app: 'test8',
+                    app: 'test11',
                 },
             },
         });

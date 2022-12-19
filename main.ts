@@ -11,5 +11,8 @@ const cluster = {
   env: 'dev'
 }
 
+console.log(`synthesizing for cluster: ${cluster.name} in env: ${cluster.env}`);
+
 synth.synth(cluster);
 
+console.log('done.');
