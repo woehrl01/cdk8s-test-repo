@@ -1,21 +1,18 @@
 import { Construct } from 'constructs';
 import { Chart } from 'cdk8s';
 import { injectable, injectAll } from 'tsyringe';
-import { ChartApplication, Cluster } from '../charts/Application';
+import { BaseChartApplication, ChartApplication, Cluster } from '../charts/Application';
 import { ArgoCDcdk8sApplication as ArgoCDApplication } from '../charts/ArgoCDApplication';
 
 @injectable()
-export class RootApp implements ChartApplication {
+export class RootApp extends BaseChartApplication {
     name: string = 'RootApp';
 
     private chartApps: ChartApplication[];
 
     constructor(@injectAll("app") chartApps: ChartApplication[]) {
+        super();
         this.chartApps = chartApps
-    }
-
-    public isInstallInCluster(_cluster: Cluster) {
-        return true;
     }
 
     public add(app: Construct, cluster: Cluster) {
