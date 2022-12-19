@@ -9,19 +9,22 @@
 
 rm -rf dist/*
 
-export CLUSTER_NAME="test"
+export CLUSTER_NAME="test-cluster"
 export CLUSTER_ENVIRONMENT="dev"
 
 
+#this command generates all the root app, in this current example this will generate the ArgoCD application for each chart
 CHART=RootApp \
     bun run ./main.ts
 
 echo ""
 
+#this command generates the app for a specific chart, this should be called via the root app
 CHART=ChartApp \
     bun run ./main.ts
 
 echo ""
 
+#this command generates the app for a specific chart, this should be called via the root app
 CHART=Chart2App \
     bun run ./main.ts

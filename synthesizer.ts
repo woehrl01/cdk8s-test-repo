@@ -43,7 +43,7 @@ export class Synthesizer {
     let foundChart = false;
 
     allCharts.forEach((application) => {
-      if (application.name === chartName && application.isInstallInCluster(cluster)) {
+      if (application.name === chartName) {
         console.log(`generate application: ${application.name}`);
         application.add(app, cluster);
         foundChart = true;

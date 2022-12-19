@@ -19,10 +19,9 @@ export class RootApp implements ChartApplication {
     }
 
     public add(app: Construct, cluster: Cluster) {
-
-        this.chartApps.forEach(a => {
-            if (a.isInstallInCluster(cluster)) {
-                new ArgoCDAppChart(app, a, cluster)
+        this.chartApps.forEach(chartApp => {
+            if (chartApp.isInstallInCluster(cluster)) {
+                new ArgoCDAppChart(app, chartApp, cluster)
             }
         });
     }
@@ -32,7 +31,7 @@ class ArgoCDAppChart extends Chart {
     constructor(scope: Construct, app: ChartApplication, cluster: Cluster) {
         super(scope, "app-" + app.name);
 
-        new ArgoCDcdk8sApplication(this, 'test', {
+        new ArgoCDcdk8sApplication(this, "app", {
             name: app.name,
             namespace: app.name,
             clustername: cluster.name,
