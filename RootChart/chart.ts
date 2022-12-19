@@ -2,7 +2,6 @@ import { Construct } from 'constructs';
 import { Chart } from 'cdk8s';
 import { injectable, injectAll } from 'tsyringe';
 import { BaseChartApplication, ChartApplication, Cluster } from '../charts/Application';
-import { ArgoCDcdk8sApplication as ArgoCDApplication } from '../charts/ArgoCDApplication';
 import { Application } from '../imports/application-argoproj.io';
 
 @injectable()
