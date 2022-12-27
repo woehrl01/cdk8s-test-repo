@@ -15,9 +15,7 @@ export class ChartApp extends BaseChartApplication {
 
 class MyChart extends Chart {
     constructor(scope: Construct, id: string) {
-        super(scope, id, {
-            namespace: 'cdk8s',
-        });
+        super(scope, id);
 
         new KubeService(this, 'test', {
             metadata: {
