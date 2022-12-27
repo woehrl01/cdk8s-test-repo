@@ -1,0 +1,18 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: cdk8s-plugin
+data:
+  plugin.yaml: |
+    apiVersion: argoproj.io/v1alpha1
+    kind: ConfigManagementPlugin
+    metadata:
+      name: cdk8s-plugin
+    spec:
+      version: v1.0
+      init:
+        command: [sh, -c, '/generate.sh']
+      generate:
+        command: [sh, -c, 'cat dist/*']
+      discover:
+        fileName: "./cdk8s.yaml"
