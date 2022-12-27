@@ -12,13 +12,6 @@ export class Chart2App extends BaseChartApplication {
         return cluster.env === 'dev';
     }
 
-    public refSelection(cluster: Cluster): string {
-        if (cluster.env === 'dev') {
-            return "custom/branch"
-        }
-        return "HEAD"
-    }
-
     public add(app: Construct, _cluster: Cluster) {
         new MyChart(app, this.name);
     }
