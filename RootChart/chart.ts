@@ -31,18 +31,18 @@ export class RootApp extends BaseChartApplication {
 
 class ArgoCDAppChart extends Chart {
     constructor(scope: Construct, app: ChartApplication, cluster: Cluster) {
-        super(scope, "app-" + app.name);
+        super(scope, "app-" + app.name.toLowerCase());
 
-        new Application(this, app.name, {
+        new Application(this, app.name.toLowerCase(), {
             metadata: {
-                name: app.name
+                name: app.name.toLowerCase()
             },
             spec: {
                 destination: {
                     name: cluster.name,
-                    namespace: app.name
+                    namespace: app.name.toLowerCase()
                 },
-                project: app.name,
+                project: app.name.toLowerCase(),
                 source: {
                     repoUrl: "https://github.com/woehrl01/cdk8s-test-repo",
                     path: ".",
