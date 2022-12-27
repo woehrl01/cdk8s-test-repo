@@ -31,7 +31,7 @@ class MyChart extends Chart {
                     },
                 ],
                 selector: {
-                    app: 'test12',
+                    app: 'test13',
                 },
             },
         });
