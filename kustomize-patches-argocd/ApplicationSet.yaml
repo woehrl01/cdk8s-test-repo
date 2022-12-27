@@ -1,0 +1,30 @@
+apiVersion: argoproj.io/v1alpha1
+kind: ApplicationSet
+metadata:
+  name: cdk8s
+spec:
+  generators:
+    - clusters: {}
+  template:
+    metadata:
+      name: "cdk8s-{{cluster}}"
+    spec:
+      project: contec-project
+      source:
+        repoURL: https://github.com/woehrl01/cdk8s-test-repo
+        targetRevision: main
+        path: "."
+        plugin:
+          env:
+            - name: CHART
+              value: RootChart
+            - name: CLUSTER_ENVIRONMENT
+              value: dev
+      destination:
+        name: "{{cluster}}"
+        namespace: cdk8s
+      syncPolicy:
+        automated:
+          prune: true
+        syncOptions:
+          - CreateNamespace=true

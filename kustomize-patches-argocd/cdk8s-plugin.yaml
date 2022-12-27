@@ -11,7 +11,7 @@ data:
     spec:
       version: v1.0
       init:
-        command: [sh, -c, '/generate.sh']
+        command: [sh, -c, 'bun install && bun run exec']
       generate:
         command: [sh, -c, 'cat dist/*']
       discover:

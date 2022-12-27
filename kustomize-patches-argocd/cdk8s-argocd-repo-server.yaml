@@ -18,6 +18,9 @@ spec:
               name: var-files
             - mountPath: /home/argocd/cmp-server/plugins
               name: plugins
+            - mountPath: /home/argocd/cmp-server/config/plugin.yaml
+              subPath: plugin.yaml
+              name: cdk8s-plugin
             - mountPath: /tmp
               name: cdk8s-tmp
       volumes:
