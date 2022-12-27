@@ -45,6 +45,7 @@ class ArgoCDAppChart extends Chart {
                 project: app.name,
                 source: {
                     repoUrl: "https://github.com/woehrl01/cdk8s-test-repo",
+                    path: ".",
                     targetRevision: app.refSelection(cluster),
                     plugin: {
                         name: "cdk8s",
