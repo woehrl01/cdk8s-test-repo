@@ -18,7 +18,8 @@ export class Synthesizer {
 
   private register(registerer: Registerer, scopeName: string) {
     const register = (clazz: constructor<unknown>) => {
-      // delay is needed to prevent a cyclic dependency error. see: https://github.com/microsoft/tsyringe#the-delay-helper-function
+      // delay is needed to prevent a cyclic dependency error. 
+      // see: https://github.com/microsoft/tsyringe#the-delay-helper-function
       container.register(scopeName, { useClass: delay(() => clazz) });
     }
     registerer(register);
@@ -31,7 +32,7 @@ export class Synthesizer {
     console.log(`Synthesize chart ${chartName} for cluster ${cluster.name} in environment ${cluster.env}`)
 
     const app = new App({
-      yamlOutputType: YamlOutputType.FILE_PER_APP,
+      yamlOutputType: YamlOutputType.FILE_PER_APP
     });
 
     let foundChart = false;

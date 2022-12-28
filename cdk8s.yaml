@@ -1,6 +1,7 @@
 language: typescript
-app: node main.js
+app: bun main.js
 imports:
-  - k8s
-  - application:=https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml
-  - externalsecret:=https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_externalsecrets.yaml
+  - k8s@1.23.0
+  - application:=https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.5/manifests/crds/application-crd.yaml
+  - appproject:=https://raw.githubusercontent.com/argoproj/argo-cd/v2.5.5/manifests/crds/appproject-crd.yaml
+  - externalsecret:=https://raw.githubusercontent.com/external-secrets/external-secrets/v0.7.0/config/crds/bases/external-secrets.io_externalsecrets.yaml
