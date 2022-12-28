@@ -42,7 +42,7 @@ class ArgoCDAppChart extends Chart {
                     name: cluster.name,
                     namespace: app.name.toLowerCase()
                 },
-                project: app.name.toLowerCase(),
+                project: "contec-project",
                 source: {
                     repoUrl: "https://github.com/woehrl01/cdk8s-test-repo",
                     path: ".",
