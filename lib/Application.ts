@@ -13,6 +13,7 @@ export interface RequestContext {
 
 export interface ChartApplication {
     readonly name: string;
+    readonly projectName: string;
     isInstallInCluster(cluster: Cluster): boolean;
     refSelection(cluster: Cluster): string;
     add(app: Construct, cluster: Cluster): void;
@@ -20,6 +21,7 @@ export interface ChartApplication {
 
 export abstract class BaseChartApplication implements ChartApplication {
     abstract name: string;
+    abstract projectName: string;
     public abstract add(app: Construct, cluster: Cluster): void;
 
     public isInstallInCluster(_cluster: Cluster) {

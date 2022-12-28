@@ -7,6 +7,7 @@ import { Application } from '@imports/application-argoproj.io';
 @injectable()
 export class RootApp extends BaseChartApplication {
     name: string = 'RootApp';
+    projectName: string = '';
 
     private chartApps: ChartApplication[];
 
@@ -43,7 +44,7 @@ class ArgoCDAppChart extends Chart {
                     name: cluster.name,
                     namespace: app.name.toLowerCase()
                 },
-                project: "contec-project",
+                project: app.projectName,
                 source: {
                     repoUrl: "https://github.com/woehrl01/cdk8s-test-repo",
                     path: ".",

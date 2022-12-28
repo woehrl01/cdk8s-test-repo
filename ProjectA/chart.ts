@@ -8,6 +8,7 @@ import { ExternalTerraformSecretV1 } from '@lib/ExternalTerraformSecretV1';
 @injectable()
 export class ChartApp extends BaseChartApplication {
     name: string = 'ChartApp';
+    projectName: string = '';
 
     public add(app: Construct, _cluster: Cluster) {
         new MyChart(app, this.name);

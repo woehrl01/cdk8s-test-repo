@@ -7,6 +7,7 @@ import { BaseChartApplication, Cluster } from '@lib/Application';
 @injectable()
 export class Chart2App extends BaseChartApplication {
     name: string = 'Chart2App';
+    projectName: string = '';
 
     /*public isInstallInCluster(cluster: Cluster) {
         return cluster.env === 'dev';
