@@ -1,4 +1,4 @@
-import { App } from "cdk8s";
+import { App, YamlOutputType } from "cdk8s";
 import { container, delay } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
 import { ChartApplication, Cluster, Registerer } from "./charts/Application";
@@ -20,7 +20,9 @@ export class Synthesizer {
   }
 
   public synth(cluster: Cluster, chartName: string) {
-    const app = new App();
+    const app = new App({
+      yamlOutputType: YamlOutputType.FILE_PER_APP,
+    });
 
     let foundChart = false;
 
