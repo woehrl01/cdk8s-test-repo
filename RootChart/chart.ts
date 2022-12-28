@@ -35,12 +35,13 @@ class ArgoCDAppChart extends Chart {
 
         new Application(this, app.name.toLowerCase(), {
             metadata: {
-                name: app.name.toLowerCase()
+                name: app.name.toLowerCase(),
+                namespace: "argocd"
             },
             spec: {
                 destination: {
                     name: cluster.name,
-                    namespace: "argocd"
+                    namespace: app.name.toLowerCase()
                 },
                 project: "contec-project",
                 source: {
