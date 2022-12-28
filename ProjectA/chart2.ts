@@ -28,9 +28,9 @@ class MyChart extends Chart {
     constructor(scope: Construct, id: string, props: ChartProps = {}) {
         super(scope, id, props);
 
-        new KubeService(this, 'test', {
+        new KubeService(this, 'test2', {
             metadata: {
-                name: 'test',
+                name: 'test2',
             },
             spec: {
                 ports: [
@@ -40,7 +40,7 @@ class MyChart extends Chart {
                     },
                 ],
                 selector: {
-                    app: 'test11',
+                    app: 'test12',
                 },
             },
         });
