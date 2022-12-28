@@ -8,9 +8,9 @@ import { BaseChartApplication, Cluster } from '../charts/Application';
 export class Chart2App extends BaseChartApplication {
     name: string = 'Chart2App';
 
-    /*public isInstallInCluster(cluster: Cluster) {
-        return cluster.env === 'dev';
-    }*/
+    public isInstallInCluster(cluster: Cluster) {
+        return cluster.env === 'prod';
+    }
 
     /*public refSelection(cluster: Cluster): string {
         if (cluster.env === 'dev') {
