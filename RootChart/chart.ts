@@ -48,7 +48,6 @@ class ArgoCDAppChart extends Chart {
                     path: ".",
                     targetRevision: app.refSelection(cluster),
                     plugin: {
-                        name: "cdk8s",
                         env: [
                             {
                                 name: "CLUSTER_NAME",
