@@ -40,7 +40,7 @@ class ArgoCDAppChart extends Chart {
             spec: {
                 destination: {
                     name: cluster.name,
-                    namespace: app.name.toLowerCase()
+                    namespace: "argocd"
                 },
                 project: "contec-project",
                 source: {
