@@ -1,25 +1,35 @@
 import { App, YamlOutputType } from "cdk8s";
 import { container, delay } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
-import { ChartApplication, Cluster, Registerer } from "./charts/Application";
+import { ChartApplication, Registerer, RequestContext } from "./charts/Application";
 
 export class Synthesizer {
 
   private scopes = ["app"]
+  private requestContext: RequestContext;
+
+  constructor(requestContext: RequestContext) {
+    this.requestContext = requestContext;
+  }
 
   registerApp(registerer: Registerer) {
     this.register(registerer, "app")
   }
 
   private register(registerer: Registerer, scopeName: string) {
-    const register = (c: constructor<unknown>) => {
+    const register = (clazz: constructor<unknown>) => {
       // delay is needed to prevent a cyclic dependency error. see: https://github.com/microsoft/tsyringe#the-delay-helper-function
-      container.register(scopeName, { useClass: delay(() => c) });
+      container.register(scopeName, { useClass: delay(() => clazz) });
     }
     registerer(register);
   }
 
-  public synth(cluster: Cluster, chartName: string) {
+  public synth() {
+    const cluster = this.requestContext.cluster;
+    const chartName = this.requestContext.chart;
+
+    console.log(`Synthesize chart ${chartName} for cluster ${cluster.name} in environment ${cluster.env}`)
+
     const app = new App({
       yamlOutputType: YamlOutputType.FILE_PER_APP,
     });
@@ -27,7 +37,7 @@ export class Synthesizer {
     let foundChart = false;
 
     for (var scope of this.scopes) {
-      foundChart ||= this.addChartsFor(app, cluster, scope, chartName);
+      foundChart ||= this.addChartsFor(app, scope);
     }
 
     if (!foundChart) {
@@ -37,7 +47,10 @@ export class Synthesizer {
     app.synth();
   }
 
-  private addChartsFor(app: App, cluster: Cluster, scopeName: string, chartName: string): boolean {
+  private addChartsFor(app: App, scopeName: string): boolean {
+    const cluster = this.requestContext.cluster;
+    const chartName = this.requestContext.chart;
+
     console.log(`Load all charts for scope ${scopeName}`)
 
     const allCharts = container.resolveAll<ChartApplication>(scopeName)

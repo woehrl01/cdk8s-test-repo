@@ -3,3 +3,4 @@ app: node main.js
 imports:
   - k8s
   - application:=https://raw.githubusercontent.com/argoproj/argo-cd/master/manifests/crds/application-crd.yaml
+  - externalsecret:=https://raw.githubusercontent.com/external-secrets/external-secrets/main/config/crds/bases/external-secrets.io_externalsecrets.yaml

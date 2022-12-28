@@ -14,8 +14,8 @@ export CLUSTER_ENVIRONMENT="dev"
 
 
 #this command generates all the root app, in this current example this will generate the ArgoCD application for each chart
-CHART=RootApp \
-    bun run exec
+#CHART=RootApp \
+#    bun run exec
 
 echo ""
 
@@ -26,5 +26,5 @@ CHART=ChartApp \
 echo ""
 
 #this command generates the app for a specific chart, this should be called via the root app
-CHART=Chart2App \
-    bun run exec
+#CHART=Chart2App \
+#    bun run exec
