@@ -1,8 +1,8 @@
 import { Construct } from 'constructs';
 import { Chart, ChartProps } from 'cdk8s';
-import { IntOrString, KubeService } from '../imports/k8s';
+import { IntOrString, KubeService } from '@imports/k8s';
 import { injectable } from 'tsyringe';
-import { BaseChartApplication, Cluster } from '../charts/Application';
+import { BaseChartApplication, Cluster } from '@lib/Application';
 
 @injectable()
 export class Chart2App extends BaseChartApplication {

@@ -1,9 +1,9 @@
 import { Construct } from 'constructs';
-import { Chart, JsonPatch } from 'cdk8s';
-import { IntOrString, KubeService } from '../imports/k8s';
+import { Chart } from 'cdk8s';
+import { IntOrString, KubeService } from '@imports/k8s';
 import { injectable } from 'tsyringe';
-import { BaseChartApplication, Cluster } from '../charts/Application';
-import { ExternalTerraformSecretV1 } from '../charts/ExternalTerraformSecretV1';
+import { BaseChartApplication, Cluster } from '@lib/Application';
+import { ExternalTerraformSecretV1 } from '@lib/ExternalTerraformSecretV1';
 
 @injectable()
 export class ChartApp extends BaseChartApplication {

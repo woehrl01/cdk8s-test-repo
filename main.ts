@@ -1,7 +1,7 @@
 import "reflect-metadata";
 
 import { Synthesizer } from './synthesizer';
-import { getRequestContext } from "./charts/Application";
+import { getRequestContext } from "@lib/Application";
 
 import ProjectA from "./ProjectA";
 import RootChart from "./RootChart";

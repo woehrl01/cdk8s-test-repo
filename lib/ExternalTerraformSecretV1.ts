@@ -1,5 +1,5 @@
 import { Construct } from 'constructs';
-import { ExternalSecret } from '../imports/externalsecret-external-secrets.io';
+import { ExternalSecret } from '@imports/externalsecret-external-secrets.io';
 
 export class ExternalTerraformSecretV1 extends Construct {
     constructor(scope: Construct, id: string, secretNames: string[]) {

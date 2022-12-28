@@ -1,7 +1,7 @@
 import { App, YamlOutputType } from "cdk8s";
 import { container, delay } from "tsyringe";
 import { constructor } from "tsyringe/dist/typings/types";
-import { ChartApplication, Registerer, RequestContext } from "./charts/Application";
+import { ChartApplication, Registerer, RequestContext } from "@lib/Application";
 
 export class Synthesizer {
 

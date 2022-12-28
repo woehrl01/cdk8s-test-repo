@@ -1,8 +1,8 @@
 import { Construct } from 'constructs';
 import { Chart } from 'cdk8s';
 import { injectable, injectAll } from 'tsyringe';
-import { BaseChartApplication, ChartApplication, Cluster } from '../charts/Application';
-import { Application } from '../imports/application-argoproj.io';
+import { BaseChartApplication, ChartApplication, Cluster } from '@lib/Application';
+import { Application } from '@imports/application-argoproj.io';
 
 @injectable()
 export class RootApp extends BaseChartApplication {

@@ -1,4 +1,4 @@
-import { Register } from '../charts/Application';
+import { Register } from '@lib/Application';
 import { RootApp } from './chart';
 
 export default function (register: Register) {

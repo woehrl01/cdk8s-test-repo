@@ -21,7 +21,12 @@
     "strictPropertyInitialization": true,
     "stripInternal": true,
     "target": "ES2017",
-    "emitDecoratorMetadata": true
+    "emitDecoratorMetadata": true,
+    "baseUrl": ".",
+    "paths": {
+      "@lib/*": ["lib/*"],
+      "@imports/*": ["imports/*"]
+    }
   },
   "include": ["**/*.ts"],
   "exclude": ["node_modules"]
