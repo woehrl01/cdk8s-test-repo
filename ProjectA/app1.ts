@@ -6,16 +6,16 @@ import { BaseChartApplication, Cluster } from '@lib/Application';
 import { ExternalTerraformSecretV1 } from '@lib/ExternalTerraformSecretV1';
 
 @injectable()
-export class ChartApp extends BaseChartApplication {
-    name: string = 'ChartApp';
+export class App1 extends BaseChartApplication {
+    name: string = 'App1';
     projectName: string = '';
 
     public add(app: Construct, _cluster: Cluster) {
-        new MyChart(app, this.name);
+        new App1Chart(app, this.name);
     }
 }
 
-class MyChart extends Chart {
+class App1Chart extends Chart {
     constructor(scope: Construct, id: string) {
         super(scope, id);
 

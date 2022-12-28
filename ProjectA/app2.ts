@@ -5,8 +5,8 @@ import { injectable } from 'tsyringe';
 import { BaseChartApplication, Cluster } from '@lib/Application';
 
 @injectable()
-export class Chart2App extends BaseChartApplication {
-    name: string = 'Chart2App';
+export class App2 extends BaseChartApplication {
+    name: string = 'App2';
     projectName: string = '';
 
     /*public isInstallInCluster(cluster: Cluster) {
@@ -21,11 +21,11 @@ export class Chart2App extends BaseChartApplication {
     }*/
 
     public add(app: Construct, _cluster: Cluster) {
-        new MyChart(app, this.name);
+        new App2Chart(app, this.name);
     }
 }
 
-class MyChart extends Chart {
+class App2Chart extends Chart {
     constructor(scope: Construct, id: string, props: ChartProps = {}) {
         super(scope, id, props);
 

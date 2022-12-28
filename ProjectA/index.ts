@@ -1,9 +1,9 @@
 import { Register } from '@lib/Application';
-import { ChartApp } from './chart';
-import { Chart2App } from './chart2';
+import { App1 } from './app1';
+import { App2 } from './app2';
 
 export default function (register: Register) {
-    register(ChartApp);
-    register(Chart2App);
+    register(App1);
+    register(App2);
 }
 
